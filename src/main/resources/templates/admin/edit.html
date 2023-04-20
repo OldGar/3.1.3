@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение пользователя</title>
+    <link href="/res/otherStyle.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div>
+    <form th:action="@{/admin/user}"
+          th:object="${user}"
+          th:method="PUT">
+
+        <input type="hidden" th:field="*{id}">
+
+        <label for="firstNameAdd">Имя: </label>
+        <input type="text" th:field="*{username}" id="firstNameAdd" placeholder="Имя">
+
+        <label for="lastNameAdd">Фамилия: </label>
+        <input type="text" th:field="*{lastName}" id="lastNameAdd" placeholder="Фамилия">
+
+        <label for="ageAdd">Возраст: </label>
+        <input type="text" th:field="*{age}" id="ageAdd" placeholder="Возраст">
+
+        <label for="passwordAdd">Возраст: </label>
+        <input type="password" th:field="*{password}" id="passwordAdd" placeholder="Пароль">
+
+        <label for="roles">Роли: </label>
+        <select id="roles" name="roles" multiple size="2">
+            <option
+                    th:each="role : ${roles}"
+                    th:value="${role.id}"
+                    th:text="${role.name}">
+            </option>
+        </select>
+
+        <input type="submit" value="Изменить пользователя">
+    </form>
+</div>
+</body>
+</html>

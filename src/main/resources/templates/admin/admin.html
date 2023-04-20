@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+</head>
+<body>
+
+Admin page
+
+<p>
+<div>
+    <table border="2">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Возраст</th>
+            <th>Роли</th>
+            <th>Изменить</th>
+            <th>Удалить</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${allUsers}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getLastName()}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getRoles()}"></td>
+            <td>
+                <form  th:method="GET" th:action="@{/admin/user/{id}(id=${user.getId()})}">
+                    <button type="submit">Изменить</button>
+                </form>
+            </td>
+            <td>
+                <form  th:method="delete" th:action="@{/admin/user/{id}(id=${user.getId()})}">
+                    <button type="submit">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<p>
+
+<form th:method="GET" th:action="@{/admin/user/page}">
+    <button type="submit">AddUser</button>
+</form>
+
+<p>
+
+<form th:method="POST" th:action="@{/logout/logout}">
+    <button type="submit">Logout</button>
+</form>
+
+</body>
+</html>
