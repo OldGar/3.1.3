@@ -8,6 +8,7 @@ import ru.kata.spring.boot_security.demo.molel.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -33,11 +34,13 @@ public class AdminController {
         model.addAttribute("user", new User());
         return "admin/save";
     }
+
     @PostMapping("/user")
     public String addUser(@ModelAttribute("user") User user) {
         userService.save(user);
         return "redirect:/admin/admin";
     }
+
     @GetMapping("/user/{id}")
     public String getUserEditPage(Model model, @PathVariable("id") Long id) {
         model.addAttribute("roles", roleService.getAllRoles());
@@ -45,6 +48,7 @@ public class AdminController {
         model.addAttribute("user", user);
         return "admin/edit";
     }
+
     @PutMapping("/user")
     public String editUser(@ModelAttribute("user") User user) {
         userService.save(user);
